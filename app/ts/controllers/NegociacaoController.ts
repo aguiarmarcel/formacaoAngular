@@ -15,6 +15,9 @@ export class NegociacaoController {
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
         this._negociacoesView.update(this._negociacoes);
+
+        let temCarteira: null;
+        temCarteira = null;
     }
 
     adiciona(event: Event) {

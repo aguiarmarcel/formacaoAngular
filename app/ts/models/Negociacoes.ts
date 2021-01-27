@@ -9,6 +9,7 @@ export class Negociacoes{
     }
 
     paraArray(): Negociacao[]{
-        return [].concat(this._negociacoes);
+        //resolvido o problema do strictNullChecks tipando o a sintaxe "as"
+        return ([] as Negociacao[]).concat(this._negociacoes);
     }    
 }

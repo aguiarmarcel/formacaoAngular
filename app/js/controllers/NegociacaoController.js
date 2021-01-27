@@ -21,6 +21,8 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     this._inputQuantidade = $('#quantidade');
                     this._inputValor = $('#valor');
                     this._negociacoesView.update(this._negociacoes);
+                    let temCarteira;
+                    temCarteira = null;
                 }
                 adiciona(event) {
                     event.preventDefault();
