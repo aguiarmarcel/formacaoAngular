@@ -1,6 +1,7 @@
 import { MensagemView, NegociacoesView } from '../views/index';
 import { Negociacoes, Negociacao } from '../models/index';
-import { domInject } from '../helpers/decorators/index'
+import { domInject } from '../helpers/decorators/index';
+import { NegociacaoParcial } from '../models/index';
 
 export class NegociacaoController {
 
