@@ -14,6 +14,7 @@ export class NegociacaoService {
     }
 }
 
+//Definindo o tipo de função que irá ser retornada, no caso uma Response.
 export interface HandleFunction {
     (res: Response): Response;
 }
