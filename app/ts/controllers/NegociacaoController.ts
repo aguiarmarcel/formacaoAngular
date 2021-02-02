@@ -55,33 +55,35 @@ export class NegociacaoController {
     }
 
     @throttle()//Instância para tratar a questão da requisição excessiva ao servidor
-    importarDados() {
+    async importarDados() {
 
-        this._service
-            .obterNegociacoes(res => {
+        try {
+        
+            const negociacoesParaImportar = await this._service
+                .obterNegociacoes(res => {
 
                 if (res.ok) {
                     return  res;
                 } else {
                     throw new Error(res.statusText);
                 }
-            })
-            .then(negociacoesParaImportar => {
-                //Código que compara a importação e não deixa que seja importada repetidamente
-                const negociacoesJaImportadas = this._negociacoes.paraArray();
-                
-                negociacoesParaImportar
-                    .filter(negociacao => 
-                        !negociacoesJaImportadas.some(jaImportada =>
-                            negociacao.ehIgual(jaImportada)))
-                    .forEach(negociacao =>
-                    this._negociacoes.adiciona(negociacao));
+            });
 
-                this._negociacoesView.update(this._negociacoes);
-            })
-            .catch(err => {
-                this._mensagemView.update(err.message);
-            });        
+            const negociacoesJaImportadas = this._negociacoes.paraArray();
+            
+                //Código que compara a importação e não deixa que seja importada repetidamente    
+            negociacoesParaImportar
+                .filter(negociacao => 
+                    !negociacoesJaImportadas.some(jaImportada =>
+                        negociacao.ehIgual(jaImportada)))
+                .forEach(negociacao =>
+                this._negociacoes.adiciona(negociacao));
+
+            this._negociacoesView.update(this._negociacoes);
+            
+        } catch(err) {
+            this._mensagemView.update(err.message);
+        }
     }    
 }
 
