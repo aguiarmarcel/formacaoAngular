@@ -1,9 +1,9 @@
+import { Imprimivel } from './Imprimivel';
 import {Negociacao} from './Negociacao';
 
-export class Negociacoes{
+export class Negociacoes  implements Imprimivel{
 
-    //Como está classe não está definindo um construtor, o TypeScript adota o construtor 
-    //da classe pai(imprimivel).
+    //Como Imprimivel agora é uma interface, basta que essa classe implemente Imprimivel
     private _negociacoes: Array<Negociacao> = [];
 
     adiciona(negociacao: Negociacao): void{
